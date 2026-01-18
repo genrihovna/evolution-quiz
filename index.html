@@ -1,206 +1,140 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Барный квиз: Эволюция</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #111;
-      color: #eee;
-      margin: 0;
-      padding: 1rem;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .card {
-      background: #1c1c1c;
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1rem auto;
-      max-width: 700px;
-      box-shadow: 0 0 0 1px #2a2a2a;
-    }
-    .phenomenon {
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-    .question {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-    .option {
-      display: block;
-      padding: 0.6rem 0.8rem;
-      margin: 0.4rem 0;
-      border-radius: 8px;
-      background: #2a2a2a;
-      cursor: pointer;
-    }
-    .option:hover {
-      background: #333;
-    }
-    .answer {
-      display: none;
-      margin-top: 1rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid #333;
-      color: #9fe29f;
-      font-size: 0.95rem;
-    }
-    .show-answer {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      color: #aaa;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>Барный квиз: Эволюция</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #111;
+  color: #eee;
+  margin: 0;
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.card {
+  background: #1c1c1c;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin: 0.9rem auto;
+  max-width: 720px;
+  box-shadow: 0 0 0 1px #2a2a2a;
+}
+
+.phenomenon {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.question {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+
+.option {
+  padding: 0.55rem 0.75rem;
+  margin: 0.35rem 0;
+  border-radius: 8px;
+  background: #2a2a2a;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+
+.option:hover {
+  background: #333;
+}
+
+.option.correct {
+  background: #1f5f3a;
+  color: #d8ffe8;
+}
+
+.option.wrong {
+  background: #5a1f1f;
+  color: #ffd6d6;
+}
+
+.option.disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.answer {
+  display: none;
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #333;
+  color: #9fe29f;
+  font-size: 0.9rem;
+}
+</style>
 </head>
+
 <body>
 
 <h1>🍺 Барный квиз: Эволюция</h1>
-<p style="text-align:center;color:#aaa">
-  Один ответ отражает современную теорию эволюции.
-</p>
+<div class="subtitle">Один ответ отражает современную теорию эволюции</div>
 
-<div class="card">
+<div class="card" data-correct="A">
   <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
+  <div class="question">Почему мутации не уничтожают виды?</div>
 
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
+  <div class="option" data-option="A">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
+  <div class="option" data-option="B">B. Потому что мутации в среднем улучшают организм</div>
+  <div class="option" data-option="C">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
+  <div class="option" data-option="D">D. Потому что жизнь просто очень упрямая</div>
 
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
   <div class="answer">
     ✅ Правильный ответ: A<br><br>
     Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
   </div>
 </div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
 
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
+<!-- остальные карточки делаются по той же схеме:
+     просто меняешь data-correct="D" и т.д. -->
 
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
+<script>
+document.querySelectorAll('.card').forEach(card => {
+  const correct = card.dataset.correct;
+  const options = card.querySelectorAll('.option');
+  const answer = card.querySelector('.answer');
 
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      if (card.classList.contains('answered')) return;
 
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
+      card.classList.add('answered');
 
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
+      options.forEach(o => o.classList.add('disabled'));
 
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
+      if (option.dataset.option === correct) {
+        option.classList.add('correct');
+      } else {
+        option.classList.add('wrong');
+        card.querySelector(`[data-option="${correct}"]`)
+            .classList.add('correct');
+      }
 
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
-
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
-
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
-
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
-<div class="card">
-  <div class="phenomenon">🧬 Мутации происходят постоянно, но жизнь не разваливается.</div>
-  <div class="question">
-    Почему мутации не уничтожают виды?
-  </div>
-
-  <div class="option">A. Потому что большинство мутаций нейтральны, а вредные редко передаются дальше</div>
-  <div class="option">B. Потому что мутации в среднем улучшают организм</div>
-  <div class="option">C. Потому что у организмов есть механизмы, заранее предотвращающие плохие изменения</div>
-  <div class="option">D. Потому что жизнь просто очень упрямая</div>
-
-  <div class="show-answer" onclick="this.nextElementSibling.style.display='block'">
-    Показать ответ
-  </div>
-  <div class="answer">
-    ✅ Правильный ответ: A<br><br>
-    Большинство мутаций либо нейтральны, либо отфильтровываются отбором.
-  </div>
-</div>
+      answer.style.display = 'block';
+    });
+  });
+});
+</script>
 
 </body>
 </html>
